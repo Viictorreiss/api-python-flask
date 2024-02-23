@@ -25,15 +25,14 @@ carros = [
 def obter_carros():                     # é a minha função, que é obter_carros
     return jsonify(carros)              # para retornar do db (sgbd) carros
 
-
-# GET POR ID
+# Consultar todos os carros por ID (GET)
 @app.route('/carros/<int:id>',methods=['GET'])
 def obter_carro_por_id(id):
     for carro in carros:
         if carro.get('id') == id:
             return jsonify(carro)
 
-# PUT = EDITAR
+# Editar os carros por ID (PUT)
 @app.route('/carros/<int:id>',methods=['PUT'])
 def editar_carro_por_id(id):
     carro_alterado = request.get_json()
@@ -42,13 +41,12 @@ def editar_carro_por_id(id):
             carros[indice].update(carro_alterado)
             return jsonify(carros[indice])
 
-# POST = CRIAR
+# Criar carro (POST)
 @app.route('/carros',methods=['POST'])      
 def incluir_novo_carro():
     novo_carro = request.get_json()
     carros.append(novo_carro)
     return jsonify(carros)
-
 
 # Deletar um carro (DEL)
 @app.route('/carros/<int:id>',methods=['DELETE'])
@@ -57,6 +55,5 @@ def excluir_carro(id):
         if carro.get('id') == id:
             del carros[indice]
         return jsonify(carros)
-
 
 app.run(port=5000,host='localhost',debug=True)
