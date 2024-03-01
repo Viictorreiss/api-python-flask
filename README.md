@@ -21,6 +21,7 @@ Instale my-project com npm
   python3 install
   pip install
   pip install flask
+  pip install mysql.connector
 ```
     
 
@@ -36,24 +37,26 @@ Postman
 
 ## SGBD
 
-Para realizar o laboratório de uma forma simples foi configurado uma lista no python invés de um SGBD
+Foi realizado a integração da API com um database MySQL para armazenar as requisições da nossa API.
+
+Você pode criar o database com o seguinte script:
 
 ```
-carros = [
-    {
-        'id':1,
-        'modelo': 'X1',
-        'marca': 'BMW'
-    },
-    {
-        'id':2,
-        'modelo': 'Corolla',
-        'marca': 'Toyota'
-    },
-    {
-        'id':3,
-        'modelo': 'Civic',
-        'marca': 'Honda'
-    },
-]
+CREATE DATABASE IF NOT EXISTS sua_base_de_dados;
+USE sua_base_de_dados;
+
+CREATE TABLE IF NOT EXISTS carros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR(255) NOT NULL,
+    marca VARCHAR(255) NOT NULL
+);
+```
+
+Para inserir dados de exemplos use:
+
+```
+INSERT INTO carros (modelo, marca) VALUES ('X1', 'BMW');
+INSERT INTO carros (modelo, marca) VALUES ('Corolla', 'Toyota');
+INSERT INTO carros (modelo, marca) VALUES ('Civic', 'Honda');
+
 ```
