@@ -28,7 +28,7 @@ As informações abaixo são homologadas, caso utilize alguma divergente das inf
 |  Biblioteca |  Version  |
 |-------------|-----------|
 |    Flask    |   22.2.1  |
-|  MySQL Connector  |   22.2.1  |
+|  MySQL Connector  |   2.2.9  |
 
 
 |   Database  |  Version  |
