@@ -1,9 +1,12 @@
 
-# API em Python (Flask)
+# API em Python (Flask) 🍀
 
 É uma API simples com metodos GET, PUT, POST E DELETE
 
-## Metodos
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+
+## Metodos 
 
 ```bash
 @app.route('/carros',methods=['GET']) #GET
@@ -13,19 +16,26 @@
 @app.route('/carros/<int:id>',methods=['DELETE']) # DELETE for ID
 ```
 
-## Instalação
-
-Instale my-project com npm
-
-```bash
-  python3 install
-  pip install
-  pip install flask
-  pip install mysql.connector
-```
-    
-
 ## Dependências
+
+As informações abaixo são homologadas, caso utilize alguma divergente das informadas na sessão abaixa podem ocorrer quebras de consulta, métodos, bugs ou até mesmo inativação por completo do código.
+
+|  Framework  |  Version  |
+|-------------|-----------|
+|    Python   |    3.12   |
+
+
+|  Biblioteca |  Version  |
+|-------------|-----------|
+|    Flask    |   22.2.1  |
+|  MySQL Connector  |   22.2.1  |
+
+
+|   Database  |  Version  |
+|-------------|-----------|
+|  MySQL Server |   8.3   |
+
+## Requisições
 
 Para realizar os metodos PUT, POST e DELETE é necessário ter uma ferramenta de API para realizar as requisições, a utilizada no laboratório: 
 
