@@ -28,12 +28,25 @@ As informações abaixo são homologadas, caso utilize alguma divergente das inf
 |  Biblioteca |  Version  |
 |-------------|-----------|
 |    Flask    |   22.2.1  |
-|  MySQL Connector  |   2.2.9  |
+|    Flasgger   |   0.9.7 |
+|    MySQL Connector  |   2.2.9  |
 
 
 |   Database  |  Version  |
 |-------------|-----------|
 |  MySQL Server |   8.3   |
+
+## Swagger
+Acessivel através do caminho http://localhost:5000/apidocs, é possível realizar testes automatizados dos métodos da API tanto quanto entender quais parametros são necessários para realizar as requisições da aplicação.
+
+<img src="assets\swagger.jpg" alt="swagger">
+
+Toda a dependência do swagger fica encarregada da biblioteca Flasgger, com isso para funcionamento da documentação é necessário instalar ela via pip.
+
+```bash
+pip install flasgger
+```
+
 
 ## Requisições
 

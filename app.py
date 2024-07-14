@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
 import mysql.connector
 from mysql.connector import Error
+from flasgger import Swagger
 
 app = Flask(__name__)
+swagger = Swagger(app)
 
 def conectar():
     try:
@@ -20,6 +22,27 @@ def conectar():
 # Consultar todos os carros (GET)
 @app.route('/carros', methods=['GET'])
 def obter_carros():
+    """
+    Consulta todos os carros
+    ---
+    responses:
+      200:
+        description: Lista de todos os carros
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: ID do carro
+              modelo:
+                type: string
+                description: Modelo do carro
+              marca:
+                type: string
+                description: Marca do carro
+    """
     try:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
@@ -31,9 +54,34 @@ def obter_carros():
             cursor.close()
             conn.close()
 
-# Consultar todos os carros por ID (GET)
+# Consultar carro por ID (GET)
 @app.route('/carros/<int:id>', methods=['GET'])
 def obter_carro_por_id(id):
+    """
+    Consulta um carro por ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID do carro
+    responses:
+      200:
+        description: Carro encontrado
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID do carro
+            modelo:
+              type: string
+              description: Modelo do carro
+            marca:
+              type: string
+              description: Marca do carro
+    """
     try:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
@@ -45,9 +93,44 @@ def obter_carro_por_id(id):
             cursor.close()
             conn.close()
 
-# Editar os carros por ID (PUT)
+# Editar carro por ID (PUT)
 @app.route('/carros/<int:id>', methods=['PUT'])
 def editar_carro_por_id(id):
+    """
+    Edita um carro por ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID do carro
+      - name: body
+        in: body
+        required: true
+        description: Dados do carro a serem editados
+        schema:
+          type: object
+          properties:
+            modelo:
+              type: string
+              description: Modelo do carro
+            marca:
+              type: string
+              description: Marca do carro
+    responses:
+      200:
+        description: Carro editado com sucesso
+        schema:
+          type: object
+          properties:
+            modelo:
+              type: string
+              description: Modelo do carro
+            marca:
+              type: string
+              description: Marca do carro
+    """
     carro_alterado = request.get_json()
     try:
         conn = conectar()
@@ -64,6 +147,39 @@ def editar_carro_por_id(id):
 # Criar carro (POST)
 @app.route('/carros', methods=['POST'])
 def incluir_novo_carro():
+    """
+    Cria um novo carro
+    ---
+    parameters:
+      - name: body
+        in: body
+        required: true
+        description: Dados do novo carro
+        schema:
+          type: object
+          properties:
+            modelo:
+              type: string
+              description: Modelo do carro
+            marca:
+              type: string
+              description: Marca do carro
+    responses:
+      201:
+        description: Carro criado com sucesso
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID do carro
+            modelo:
+              type: string
+              description: Modelo do carro
+            marca:
+              type: string
+              description: Marca do carro
+    """
     novo_carro = request.get_json()
     try:
         conn = conectar()
@@ -72,7 +188,7 @@ def incluir_novo_carro():
                        (novo_carro['modelo'], novo_carro['marca']))
         conn.commit()
         novo_carro['id'] = cursor.lastrowid
-        return jsonify(novo_carro)
+        return jsonify(novo_carro), 201
     finally:
         if conn.is_connected():
             cursor.close()
@@ -81,6 +197,25 @@ def incluir_novo_carro():
 # Deletar um carro (DELETE)
 @app.route('/carros/<int:id>', methods=['DELETE'])
 def excluir_carro(id):
+    """
+    Deleta um carro por ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID do carro
+    responses:
+      200:
+        description: Carro deletado com sucesso
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Mensagem de sucesso
+    """
     try:
         conn = conectar()
         cursor = conn.cursor()
