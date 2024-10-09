@@ -1,56 +1,54 @@
+# API in Python (Flask) 
 
-# API em Python (Flask) 🍀
-
-É uma API simples com metodos GET, PUT, POST E DELETE
+It is a simple API with GET, PUT, POST and DELETE methods
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 
-## Metodos 
+## Methods 
 
 ```bash
 @app.route('/carros',methods=['GET']) #GET
 @app.route('/carros/<int:id>',methods=['GET']) #GET for ID
 @app.route('/carros/<int:id>',methods=['PUT']) #PUT for ID
-@app.route('/carros',methods=['POST'])  # POST
+@app.route('/carros',methods=['POST']) # POST
 @app.route('/carros/<int:id>',methods=['DELETE']) # DELETE for ID
 ```
 
-## Dependências
+## Dependencies
 
-As informações abaixo são homologadas, caso utilize alguma divergente das informadas na sessão abaixa podem ocorrer quebras de consulta, métodos, bugs ou até mesmo inativação por completo do código.
+The information below is approved, if you use any information that differs from that informed in the section below, query breaks, methods, bugs or even complete inactivation of the code may occur.
 
-|  Framework  |  Version  |
+|  Framework |  Version |
 |-------------|-----------|
-|    Python   |    3.12   |
+|    Python |    3.12 |
 
 
-|  Biblioteca |  Version  |
+|  Library |  Version |
 |-------------|-----------|
-|    Flask    |   22.2.1  |
-|    Flasgger   |   0.9.7 |
-|    MySQL Connector  |   2.2.9  |
+|    Flask |   22.2.1 |
+|    Flagger |   0.9.7 |
+|    MySQL Connector |   2.2.9 |
 
 
-|   Database  |  Version  |
+|   Database |  Version |
 |-------------|-----------|
-|  MySQL Server |   8.3   |
+|  MySQL Server |   8.3 |
 
 ## Swagger
-Acessivel através do caminho http://localhost:5000/apidocs, é possível realizar testes automatizados dos métodos da API tanto quanto entender quais parametros são necessários para realizar as requisições da aplicação.
+Accessible via the path http://localhost:5000/apidocs, it is possible to carry out automated tests of the API methods as well as understand which parameters are necessary to carry out the application's requests.
 
 <img src="assets\swagger.jpg" alt="swagger">
 
-Toda a dependência do swagger fica encarregada da biblioteca Flasgger, com isso para funcionamento da documentação é necessário instalar ela via pip.
+All swagger dependencies are handled by the Flasgger library, so for the documentation to work it is necessary to install it via pip.
 
 ```bash
-pip install flasgger
+pip install flagger
 ```
 
+## Requests
 
-## Requisições
-
-Para realizar os metodos PUT, POST e DELETE é necessário ter uma ferramenta de API para realizar as requisições, a utilizada no laboratório: 
+To perform the PUT, POST and DELETE methods it is necessary to have an API tool to make the requests, the one used in the laboratory: 
 
 ```bash
 Postman
@@ -58,28 +56,34 @@ Postman
 
 <img src="assets\postman.jpeg" alt="postman">
 
-## SGBD
+## DBMS
 
-Foi realizado a integração da API com um database MySQL para armazenar as requisições da nossa API.
+The API was integrated with a MySQL database to store our API requests.
 
-Você pode criar o database com o seguinte script:
+You can create the database with the following script:
 
 ```
-CREATE DATABASE IF NOT EXISTS sua_base_de_dados;
-USE sua_base_de_dados;
+CREATE DATABASE IF NOT EXISTS your_data_base;
+USE your_data_base;
 
-CREATE TABLE IF NOT EXISTS carros (
+CREATE TABLE IF NOT EXISTS cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    modelo VARCHAR(255) NOT NULL,
-    marca VARCHAR(255) NOT NULL
+    model VARCHAR(255) NOT NULL,
+    mark VARCHAR(255) NOT NULL
 );
 ```
 
-Para inserir dados de exemplos use:
+To enter example data use:
 
 ```
-INSERT INTO carros (modelo, marca) VALUES ('X1', 'BMW');
-INSERT INTO carros (modelo, marca) VALUES ('Corolla', 'Toyota');
-INSERT INTO carros (modelo, marca) VALUES ('Civic', 'Honda');
-
+INSERT INTO cars (model, make) VALUES ('X1', 'BMW');
+INSERT INTO cars (model, make) VALUES ('Corolla', 'Toyota');
+INSERT INTO cars (model, make) VALUES ('Civic', 'Honda');
 ```
+
+## Observations
+
+This template is a technical guide to follow and even study (if necessary) how Python + Streamlit works. 
+
+### The template is open source for everyone to enjoy and implement their idea on top of it as needed.
+
